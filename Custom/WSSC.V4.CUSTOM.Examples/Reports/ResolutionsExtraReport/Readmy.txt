@@ -1,0 +1,57 @@
+﻿Постановка
+Для процесса «Корпоративная переписка» необходимо реализовать кастомный отчет по резолюциям.
+Ссылка на шаблон должна располагаться в тулбаре карточки.
+
+1 строка – заголовки таблицы.
+2 строка – информация по решениям адресатов «Рассмотрено» и «Рассмотрено(доп. адресаты)», если заполняется «Текст резолюции». Если решений с текстом резолюции несколько, то для каждого решения отдельная строчка. 
+3 строка – информация из полей вложенных поручений, проставленных адресатами. Если вложенных поручений несколько, то для каждого поручения отдельная строчка.
+Последняя строка – информация по решению «Списать в дело».
+
+Реализация и логика работы модуля
+Добавлен кастомный лист согласования, реализующий кейсы:
+1)  заголовки таблицы
+2) строка 2 формируется для каждого решения «Рассмотрено» и «Рассмотрено(доп. адресаты)» если был дан комментарий к решению и его принял пользователь из поля «Адресаты» или его заместитель.
+3) строка 3 формируется для каждого поручения, в котором  поле «Автор поручения» пользователь из поля «Адресаты» или его заместитель.
+4) строка 4 формируется для решения, если оно было принято, «Списать в дело».  Название решения берётся для текущего процесса из настройки «EDC.ResolutionsExtraReport».
+
+Настройка
+
+1) На узле dms в WSSC_ReportsSettings создать элемент с названием CorpCorrReport и заполнить поля:
+«Html отчета» 
+
+<table cellpadding="0" cellspacing="0" align="center" width="980"> 
+<div align="center"> 
+<p style="font-size: 12pt; font-family: 'Arial Narrow', Arial, sans-serif;"><b>ОТЧЕТ ПО РЕЗОЛЮЦИЯМ</b></p> 
+<p style="font-size: 12pt; font-family: 'Arial Narrow', Arial, sans-serif;">от [Сегодня]</p> 
+</div> 
+<table style="width:100%; font-size: 12pt; font-weight: normal; font-family: 'Arial Narrow', Arial, sans-serif;" cellspacing="0" cellpadding="0"> 
+<tr border="0"> 
+<td style="border:0px; width: 15%;">Рег. Номер: </td> 
+<td style="border:0px; text-align: left; padding-left: 60px;">{Регистрационный номер} от {Дата регистрации}</td> 
+</tr> 
+<tr border="0"> 
+<td style="border:0px; width: 15%;"">Содержание:</td> 
+<td style="border:0px; text-align: left; padding-left: 60px;">«{Содержание}»</td> 
+</tr> 
+</table> 
+#ResolutionTable# 
+</table>
+
+
+2) На главном узле в WSSC_ConstsList в «Подгруппа : Отчет "Лист согласования"» вставить в тег с настройкой для нужного списка (например в <web url="/dms/withoutcau">)
+    <list name="technicalapps">
+<link title="Лист согласования" url="/_LAYOUTS/WSS/WSSC.V4.DMS.Reports/AgreementSheet.aspx?FactUserInBrackets=true&webID={0}&listID={1}&itemID={2}&settingName=CorpCorrReport" isAgreementSheet="true"/>
+    </list>  
+
+3) На главном узле в WSSC_ConstsList добавить константу с системным названием «EDC.ResolutionsExtraReport» и значением:
+<Settings>
+  <Lists>
+    <List Name="CorpCorrespondence" WebUrl="dms/corpcorrespondence">
+      <SolutionRow Name="Списать в дело" UsersField="Адресаты"/>
+    </List>
+    <List Name="ERequests" WebUrl="dms/erequests">
+      <SolutionRow Name="Отправить на хранение" UsersField="Инициатор"/>
+    </List>
+  </Lists>
+</Settings>
+Где SolutionRow это информация по решению (4ая строка отчёта).
