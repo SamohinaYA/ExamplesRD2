@@ -55,9 +55,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionProvider.cs" />
-    <Compile Include="Reports\ResolutionsExtraReport\ResolutionExtraDataProvider.cs" />
-    <Compile Include="Reports\ResolutionsExtraReport\ResolutionExtraReportSettings.cs" />
-    <Compile Include="Reports\ResolutionsExtraReport\ResolutionsExtraReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- Deploy -->
@@ -76,15 +73,11 @@
     <!-- Deploy -->
     <Content Include="Deploy\DeployParams.txt" />
     <Content Include="Deploy\Manifest.xml" />
-    <Content Include="Reports\ResolutionsExtraReport\ResolutionsExtraReport.css" />
-    <Content Include="Reports\ResolutionsExtraReport\settings.xml" />
-    <Content Include="Reports\ResolutionsExtraReport\Readmy.txt" />
     <!-- Release-->
     <Content Include="Types_WSSC.V4.CUSTOM.Examples.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
