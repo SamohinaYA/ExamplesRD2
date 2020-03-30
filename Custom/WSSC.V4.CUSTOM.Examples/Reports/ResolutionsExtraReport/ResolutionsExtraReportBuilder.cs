@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Aspose.Words;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using WSSC.V4.SYS.DBFramework;
-using WSSC.V4.DMS.Workflow;
-using WSSC.V4.SYS.Fields.Lookup;
-using System.Web.UI.WebControls;
-using WSSC.V4.DMS.Reports.PrintForm;
-using System.Web.UI;
-using WSSC.V4.DMS.Reports;
-using Aspose.Words;
-using AW = Aspose.Words;
 using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WSSC.V4.DMS.Reports;
 using WSSC.V4.DMS.Reports.AsposeUtils;
+using WSSC.V4.DMS.Reports.PrintForm;
+using WSSC.V4.DMS.Workflow;
+using WSSC.V4.SYS.DBFramework;
+using WSSC.V4.SYS.Fields.Lookup;
+using AW = Aspose.Words;
 
-namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
+namespace WSSC.V4.DMS.EDC.Custom.Examples.ResolutionsExtraReport
 {
     /// <summary>
     /// Отчёт по резолюциям
@@ -22,7 +21,7 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
     {
         internal ResolutionsExtraReportBuilder(PFBuilder builder) : base(builder)
         {
-            _helper = new ResolutionsExtraDataProvider(Item);
+            _dataProvider = new ResolutionsExtraDataProvider(Item);
 
             _resolutionTable = BuildTable();
         }
@@ -30,7 +29,7 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
         /// <summary>
         /// Помощник построения отчёта
         /// </summary>
-        private readonly ResolutionsExtraDataProvider _helper;
+        private readonly ResolutionsExtraDataProvider _dataProvider;
 
         /// <summary>
         /// Html таблица отчёта по резолюциям
@@ -62,14 +61,14 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
             List<TableRow> result = new List<TableRow>();
             TableRow row;
 
-            if (_helper.UsersIdSet.Count > 0)
+            if (_dataProvider.UsersIdSet.Count > 0)
             {
                 /* информация по решениям адресатов «Рассмотрено» и «Рассмотрено(доп. адресаты)», если заполняется «Текст резолюции». 
                      Если решений с текстом резолюции несколько, то для каждого решения отдельная строчка*/
                 string initor = Item.GetStringValue(Consts.Lists.CommonFields.Initiator);
-                foreach (SolutionsHistory solution in _helper.ResolutionSolutions)
+                foreach (SolutionsHistory solution in _dataProvider.ResolutionSolutions)
                 {
-                    DBUser user = _helper.GetAdresseSolutionUser(solution.UserID);
+                    DBUser user = _dataProvider.GetAdresseSolutionUser(solution.UserID);
 
                     row = new TableRow();
                     AddCell(row, initor);
@@ -78,15 +77,15 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
                     AddCell(row, solution.Comment);
                     AddCell(row, $"{solution.Date.ToShortDateString()} {solution.Date.ToShortTimeString()}");
                     AddCell(row);
-                    AddCell(row, $"{user.Name}{Environment.NewLine}{_helper.GetFaximile(user.UserItem)}");
+                    AddCell(row, $"{user.Name}{Environment.NewLine}{_dataProvider.GetFaximile(user.UserItem)}");
 
                     result.Add(row);
                 }
 
                 /*информация из полей вложенных поручений, проставленных адресатами. Если вложенных поручений несколько, то для каждого поручения отдельная строчка.*/
-                foreach (DBItem cmitem in _helper.UsersCommissions)
+                foreach (DBItem cmitem in _dataProvider.UsersCommissions)
                 {
-                    DBUser user = _helper.GetAdresseSolutionUser(cmitem.GetLookupID(Consts.Lists.Commission.Author));
+                    DBUser user = _dataProvider.GetAdresseSolutionUser(cmitem.GetLookupID(Consts.Lists.Commission.Author));
 
                     row = new TableRow();
                     AddCell(row, cmitem.GetStringValue(Consts.Lists.Commission.Executor));
@@ -95,16 +94,16 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
                     AddCell(row, cmitem.GetStringValue(Consts.Lists.Commission.Content));
                     AddCell(row, cmitem.GetStringValue(Consts.Lists.Commission.DateCreation));
                     AddCell(row, cmitem.GetStringValue(Consts.Lists.Commission.ExpireDate));
-                    AddCell(row, $"{user.Name}{Environment.NewLine}{_helper.GetFaximile(user.UserItem)}");
+                    AddCell(row, $"{user.Name}{Environment.NewLine}{_dataProvider.GetFaximile(user.UserItem)}");
 
                     result.Add(row);
                 }
 
                 /*информация по решениям, указанным в настройках*/
-                SolutionsHistory sol = _helper.GetSolution();
+                SolutionsHistory sol = _dataProvider.GetSolution();
                 if (sol != null)
                 {
-                    DBUser user = _helper.GetCustomSolutionUser(sol.UserID);
+                    DBUser user = _dataProvider.GetCustomSolutionUser(sol.UserID);
 
                     row = new TableRow();
                     AddCell(row, string.Empty);
@@ -113,7 +112,7 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
                     AddCell(row, sol.Comment);
                     AddCell(row, $"{sol.Date.ToShortDateString()} {sol.Date.ToShortTimeString()}");
                     AddCell(row, string.Empty);
-                    AddCell(row, $"{user.Name}{Environment.NewLine}{_helper.GetFaximile(user.UserItem)}");
+                    AddCell(row, $"{user.Name}{Environment.NewLine}{_dataProvider.GetFaximile(user.UserItem)}");
 
                     result.Add(row);
                 }
@@ -209,7 +208,7 @@ namespace WSSC.V4.DMS.EDC.Reports.ResolutionsExtraReport
             {
                 using (HtmlTextWriter htw = new HtmlTextWriter(sw))
                 {
-                    this._resolutionTable.RenderControl(htw);
+                    _resolutionTable.RenderControl(htw);
                     builder.InsertHtml($"<html><head><style>{Properties.Resources.ResolutionsExtraReport}</style></head><body>{sw.ToString()}</body><html>");
                 }
             }
