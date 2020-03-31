@@ -1,6 +1,6 @@
 ;*** BEGIN **********************************************************
 ;**                                                                **
-;** Automatically generated on: Tue Mar 31 12:50:03 2020           **
+;** Automatically generated on: Tue Mar 31 21:48:25 2020           **
 ;**                                                                **
 ;** MakeCAB Version: 6.3.9600.16384                                 **
 ;**                                                                **
@@ -11,10 +11,10 @@
 1,1,WSSC.V4.CUSTOM.Examples.wsp
 [file list]
 1,1,LAYOUTS\WSS\DBF\Types\Types_WSSC.V4.CUSTOM.Examples.xml,3157
-1,1,WSSC.V4.CUSTOM.Examples.dll,5120
+1,1,WSSC.V4.CUSTOM.Examples.dll,9728
 1,1,Manifest.xml,443
 ;*** END ************************************************************
 ;**                                                                **
-;** Automatically generated on: Tue Mar 31 12:50:03 2020           **
+;** Automatically generated on: Tue Mar 31 21:48:25 2020           **
 ;**                                                                **
 ;*** END ************************************************************
