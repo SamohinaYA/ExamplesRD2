@@ -8,7 +8,7 @@ using WSSC.V4.SYS.Fields.Files;
 using WSSC.V4.SYS.Fields.Lookup;
 using WSSC.V4.SYS.Lib.DBObjects;
 
-namespace WSSC.V4.DMS.CUSTOM.Examples.Reports.ResolutionsExtraReport
+namespace WSSC.V4.DMS.CUSTOM.Reports
 {
     /// <summary>
     /// Поставщик данных для отчёта по резолюциям

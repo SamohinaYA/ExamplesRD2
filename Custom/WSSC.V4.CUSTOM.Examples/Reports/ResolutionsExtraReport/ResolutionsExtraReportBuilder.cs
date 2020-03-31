@@ -12,7 +12,7 @@ using WSSC.V4.SYS.DBFramework;
 using WSSC.V4.SYS.Fields.Lookup;
 using AW = Aspose.Words;
 
-namespace WSSC.V4.DMS.EDC.Custom.Examples.ResolutionsExtraReport
+namespace WSSC.V4.DMS.EDC.Reports
 {
     /// <summary>
     /// Отчёт по резолюциям

@@ -7,7 +7,7 @@ using WSSC.V4.DMS.Workflow;
 using WSSC.V4.SYS.DBFramework;
 using WSSC.V4.SYS.Lib.DBObjects;
 
-namespace WSSC.V4.DMS.CUSTOM.Examples.Reports.ExpertsSolution
+namespace WSSC.V4.DMS.CUSTOM.Reports
 {
     /// <summary>
     /// Кастомный лист согласования для [Таблица экспертов] для роли "Эксперты" по решениям "Предоставить комментарий"

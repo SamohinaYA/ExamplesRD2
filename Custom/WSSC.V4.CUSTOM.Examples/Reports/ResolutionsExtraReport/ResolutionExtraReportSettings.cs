@@ -2,7 +2,7 @@
 using System.Xml;
 using WSSC.V4.SYS.DBFramework;
 
-namespace WSSC.V4.DMS.CUSTOM.Examples.Reports.ResolutionsExtraReport
+namespace WSSC.V4.DMS.CUSTOM.Reports
 {
     /// <summary>
     /// Класс получения значений из системной константы
