@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings SiteUrl="http://korea">
+  <Lists>
+    <List WebUrl="/dms" Name="Contragents">
+      <RestoreSettings
+        DateAt="2020.03.31 10:00"
+        DateTo=""
+        Field="Компания"
+        WrongValue="151"
+        IntegerValue="true"
+      />
+    </List>
+  </Lists>
+</Settings>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE86F9A4-3E2B-45C6-B9F4-02D868921281}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>WSSC.V4.DMS.TMK.EDMS.Utils.RestoreZinstructions</RootNamespace>
+    <AssemblyName>WSSC.V4.DMS.TMK.EDMS.Utils.RestoreZinstructions</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WSSC.V4.DMS.Workflow, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\EDMS\WSSC.V4.DMS\WSSC.V4.DMS.Workflow\Release\WSSC.V4.DMS.Workflow.dll</HintPath>
+    </Reference>
+    <Reference Include="WSSC.V4.SYS.DBFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\System\WSSC.V4.SYS.DBFramework\WSSC.V4.SYS.DBFramework\Release\WSSC.V4.SYS.DBFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="WSSC.V4.SYS.Fields.Lookup, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\System\WSSC.V4.SYS.Fields\WSSC.V4.SYS.Fields.Lookup\Release\WSSC.V4.SYS.Fields.Lookup.dll</HintPath>
+    </Reference>
+    <Reference Include="WSSC.V4.SYS.Lib.Base, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\System\WSSC.V4.SYS.Lib\WSSC.V4.SYS.Lib.Base\Release\WSSC.V4.SYS.Lib.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="WSSC.V4.SYS.Lib.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\System\WSSC.V4.SYS.Lib\WSSC.V4.SYS.Lib.Data\Release\WSSC.V4.SYS.Lib.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WSSC.V4.SYS.Lib.Utilities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>S:\Разработка\DMS\YSamohina\TFS\2.WSSDocs\RD2\System\WSSC.V4.SYS.Lib\WSSC.V4.SYS.Lib.Utilities\Release\WSSC.V4.SYS.Lib.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestoreSettings.cs" />
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Release\WSSC.V4.DMS.TMK.EDMS.Utils.RestoreZinstructions.pdb" />
+    <Content Include="Settings.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
